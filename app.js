@@ -2,7 +2,8 @@ const express =require("express");
 const mongoose=require("mongoose");
 const bodyParser=require("body-parser");
 
-
+const prescriptionRoute=require("./Routes/prescriptionRouter");
+const invoiceRoute=require("./Routes/invoiceRouter");
 
 const server=express();
 
@@ -41,8 +42,8 @@ server.use(bodyParser.urlencoded({extended:false}));
 
 // we will put our Routing here 
 // patient,doctor ,......
-
-
+server.use("/Prescription",prescriptionRoute);
+server.use("/Invoice",invoiceRoute);
 server.use((request,response,next)=>{
         response.send("General Middle ware");
 
