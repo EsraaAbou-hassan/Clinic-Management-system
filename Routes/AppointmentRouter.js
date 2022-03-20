@@ -1,7 +1,7 @@
 const express = require("express");
 const {body,param,query}=require("express-validator");
 const router=express.Router();
-const controller=require("./../Controler/AppointmentController");
+const controller=require("./../Controllers/AppointmentController");
 
 // list All appointment
 router.get("",controller.getALlAppointment);

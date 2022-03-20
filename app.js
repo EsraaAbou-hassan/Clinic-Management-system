@@ -4,6 +4,7 @@ const bodyParser=require("body-parser");
 
 const prescriptionRoute=require("./Routes/prescriptionRouter");
 const invoiceRoute=require("./Routes/invoiceRouter");
+const appointmentRouter=require("./Routes/AppointmentRouter")
 
 const server=express();
 
