@@ -1,6 +1,7 @@
 const express =require("express");
 const mongoose=require("mongoose");
 const bodyParser=require("body-parser");
+const medicineRouter = require("./Routes/medicineRoute");
 
 
 
@@ -10,7 +11,7 @@ const server=express();
 mongoose.connect("mongodb://localhost:27017/CMS")
         .then(()=>{
                 console.log("DB Connected");
-                server.listen(process.env.PORT||8080,()=>{
+                server.listen(process.env.PORT||8070,()=>{
                     console.log("I am listening ......")
                 });
                 
@@ -40,6 +41,7 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended:false}));
 
 // we will put our Routing here 
+server.use("/medicine",medicineRouter);
 // patient,doctor ,......
 
 
