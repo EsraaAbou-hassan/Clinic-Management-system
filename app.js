@@ -44,6 +44,11 @@ server.use(bodyParser.urlencoded({extended:false}));
 // patient,doctor ,......
 server.use("/Prescription",prescriptionRoute);
 server.use("/Invoice",invoiceRoute);
+
+//---------------------------------------------AppointmentRouter--------------------------------
+server.use("/Appointment",appointmentRouter)
+
+
 server.use((request,response,next)=>{
         response.send("General Middle ware");
 
