@@ -32,14 +32,14 @@ exports.getInvoice=(request,response,next)=>{
             throw error;
         }
         let object = new Invoices({
-            bill_id: request.body. bill_id,
+            bill_id: request.body.bill_id,
             admission_id: request.body.admission_id,
             patient_id: request.body.patient_id,
             doctor_id: request.body.doctor_id,
             admit_date:request.body.admit_date,
-            totalPrice:request.body. totalPrice,
-            paymentMethod:request.body. paymentMethod,
-            paymentStatus:request.body. paymentStatus
+            totalPrice:request.body.totalPrice,
+            paymentMethod:request.body.paymentMethod,
+            paymentStatus:request.body.paymentStatus
         })
         object.save()
             .then(data => {

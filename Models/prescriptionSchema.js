@@ -20,7 +20,7 @@ doctor_id: {
    type: "object",
    
        properties: {
-drug_id: {
+drug_id:{
    type:Number,  
     required:true
 
