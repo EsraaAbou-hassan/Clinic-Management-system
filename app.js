@@ -3,7 +3,9 @@ const mongoose=require("mongoose");
 const bodyParser=require("body-parser");
 const medicineRouter = require("./Routes/medicineRoute");
 
-
+const prescriptionRoute=require("./Routes/prescriptionRouter");
+const invoiceRoute=require("./Routes/invoiceRouter");
+const appointmentRouter=require("./Routes/AppointmentRouter")
 
 const server=express();
 
@@ -43,6 +45,11 @@ server.use(bodyParser.urlencoded({extended:false}));
 // we will put our Routing here 
 server.use("/medicine",medicineRouter);
 // patient,doctor ,......
+server.use("/Prescription",prescriptionRoute);
+server.use("/Invoice",invoiceRoute);
+
+//---------------------------------------------AppointmentRouter--------------------------------
+server.use("/Appointment",appointmentRouter)
 
 
 server.use((request,response,next)=>{
