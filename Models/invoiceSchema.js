@@ -17,7 +17,7 @@ const schema = new mongoose.Schema({
      },
      doctor_id: {
         type:Number,
-         ref:"doctors",
+         ref:"Doctor",
          required:true   
       },
       admit_date: {

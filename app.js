@@ -1,5 +1,6 @@
 const express =require("express");
 const mongoose=require("mongoose");
+const cors = require('cors');
 const server=express();
 const bodyParser=require("body-parser");
 const medicineRouter = require("./Routes/medicineRoute");
@@ -19,7 +20,7 @@ const patientRouter=require('./Routes/patientRouter');
 mongoose.connect("mongodb://localhost:27017/CMS")
         .then(()=>{
                 console.log("DB Connected");
-                server.listen(process.env.PORT||8070,()=>{
+                server.listen(process.env.PORT||8080,()=>{
                     console.log("I am listening ......")
                 });
                 
@@ -37,7 +38,7 @@ server.use((request,response,next)=>{
     console.log(request.url,request.method);
     next();
 });
-
+ server.use(cors());
 //----------------------------------------------------routing
 
 server.use("/home",(request,response)=>{

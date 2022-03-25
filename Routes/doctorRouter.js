@@ -18,12 +18,12 @@ router.post("/post",[
    
     body("specilization").isAlpha().withMessage("doctor  specilization must by string"),
     body("Degree").isAlpha().withMessage("doctor Degree must by string"),
-    body("Department").isAlpha().withMessage("doctor Department must by string"),
+  //  body("Department").isAlpha().withMessage("doctor Department must by string"),
     body("join_Date").isDate().withMessage("invalid date"),
      body("address").isObject().withMessage("invalid address"),
     body("email").isEmail().withMessage("invalid email"),
-    body("password").isAlpha().withMessage("invalid  password "), 
-    body("img").isAlpha().withMessage("invalid img"),  
+  //  body("password").isAlpha().withMessage("invalid  password "), 
+   // body("img").isAlpha().withMessage("invalid img"),  
      
    
 ],controller.AddDoctor);
