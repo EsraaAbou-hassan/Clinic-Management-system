@@ -3,8 +3,9 @@ const mongoose=require('mongoose');
 const {Schema,model}=mongoose;
 
 const userModel=new Schema({
-    _id:Number,
-    email:{type:String,required:true,unique:true},
+    // _id:Objectid,
+    name:String,
+    Email:{type:String,required:true,unique:true},
     password:String,
     userType:{
         type:String,
@@ -12,7 +13,7 @@ const userModel=new Schema({
         //default:"patient",
         required:true
     },
-    userID:{type:Number,ref:"patient",required:true}
+    // userID:{type:Number,ref:"patient",required:true}
    
 })
 module.exports=model("users",userModel);

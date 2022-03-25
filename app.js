@@ -1,4 +1,5 @@
 const express =require("express");
+var cors = require('cors')
 const mongoose=require("mongoose");
 const server=express();
 const bodyParser=require("body-parser");
@@ -19,7 +20,7 @@ const patientRouter=require('./Routes/patientRouter');
 mongoose.connect("mongodb://localhost:27017/CMS")
         .then(()=>{
                 console.log("DB Connected");
-                server.listen(process.env.PORT||8070,()=>{
+                server.listen(process.env.PORT||8080,()=>{
                     console.log("I am listening ......")
                 });
                 
@@ -29,8 +30,7 @@ mongoose.connect("mongodb://localhost:27017/CMS")
 
         });
 
-
-
+ server.use(cors())
 //************************* MiddleWares */
 //first-MW
 server.use((request,response,next)=>{

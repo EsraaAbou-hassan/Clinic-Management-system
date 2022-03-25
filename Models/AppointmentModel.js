@@ -10,7 +10,9 @@ const appointmentModel=new mongoose.Schema({
     PatientGender:String,
     appointmentDate:Date,
     appointmentTime:String,
-    doctorName:String
+    doctorName:String,
+    Injury:String
+
 });
 
 module.exports=mongoose.model("Appointment",appointmentModel);

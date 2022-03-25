@@ -29,13 +29,15 @@ exports.createAppointment=(req,res,next)=>{
     {
         let AppointmentObject=new Appointment({
             id:req.body.id,
-            patientName:req.body.PN,
-            patientEmail:req.body.PE,
-            PatientMobile:req.body.PM,
-            patientGender:req.body.PG,
-            appointmentDate:req.body.AD,
-            appointmentTime:req.body.AT,
-            doctorName:req.body.DN,
+            PatientName:req.body.PatientName,
+            PatientEmail:req.body.PatientEmail,
+            PatientMobile:req.body.PatientMobile,
+            PatientGender:req.body.PatientGender,
+            appointmentDate:req.body.AppointmentDate,
+            appointmentTime:req.body.AppointmentTime,
+            doctorName:req.body.DoctorName,
+            Injury:req.body.injury,
+            
         
         });
 
@@ -60,14 +62,14 @@ exports.updateAppointment=(req,res,next)=>{
     Appointment.updateOne({id:req.body.id},
        {
            $set:{
-            appointmentId:req.body.id,
-            patientName:req.body.PN,
-            patientEmail:req.body.PE,
-            PatientMobile:req.body.PM,
-            patientGender:req.body.PG,
-            appointmentDate:req.body.AD,
-            appointmentTime:req.body.AT,
-            doctorName:req.body.DN,
+            PatientName:req.body.PatientName,
+            PatientEmail:req.body.PatientEmail,
+            PatientMobile:req.body.PatientMobile,
+            PatientGender:req.body.PatientGender,
+            appointmentDate:req.body.AppointmentDate,
+            appointmentTime:req.body.AppointmentTime,
+            doctorName:req.body.DoctorName,
+            Injury:req.body.injury,
            }
        }).then(result=>{
            res.status(201).json({message:"Updated"})
@@ -82,9 +84,9 @@ exports.updateAppointment=(req,res,next)=>{
 //=======================================Delete Appointment====================================
 exports.deleteAppointment=(req,res,next)=>{
   
-            Appointment.deleteOne({id:req.params.id})
+            Appointment.deleteOne({id:req.params.Id})
             .then(result=>{
-                res.status(201).json({message:"deleted"})
+                res.status(201).json({message:req.params})
     
             })
             .catch(error=>{
