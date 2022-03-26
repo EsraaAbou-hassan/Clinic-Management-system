@@ -11,6 +11,8 @@ const appointmentRouter=require("./Routes/AppointmentRouter")
 const doctorRoute=require("./Routes/doctorRouter");
 const authRouter=require('./Routes/authRouter');
 const patientRouter=require('./Routes/patientRouter');
+const doctorAppointmentRouter=require('./Routes/doctorAppointmentRouter');
+
 
 // var fs = require('fs');
 // var path = require('path');
@@ -47,6 +49,7 @@ server.use("/home",(request,response)=>{
 // middle ware to handle reqestBody
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended:false}));
+server.use(authRouter);
 
 // we will put our Routing here 
 server.use("/medicine",medicineRouter);
@@ -54,7 +57,7 @@ server.use("/medicine",medicineRouter);
 server.use("/Prescription",prescriptionRoute);
 server.use("/Invoice",invoiceRoute);
 server.use("/Doctor",doctorRoute);
-server.use(authRouter);
+server.use("/doctorAppointment",doctorAppointmentRouter);
 server.use("/patient",patientRouter);
 
 //---------------------------------------------AppointmentRouter--------------------------------

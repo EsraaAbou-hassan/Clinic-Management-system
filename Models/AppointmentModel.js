@@ -16,3 +16,5 @@ const appointmentModel=new mongoose.Schema({
 });
 
 module.exports=mongoose.model("Appointment",appointmentModel);
+
+
