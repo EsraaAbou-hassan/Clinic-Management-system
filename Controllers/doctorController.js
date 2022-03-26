@@ -119,6 +119,7 @@ exports.AddDoctor = (request, response, next) => {
     }
     exports.deleteDoctor= async (request, response, next) => {
         try {
+            
             let data = await doctor.deleteOne({_id:request.params.id})
             if (data == null)
                 throw new Error("doctor Is not Found!")
@@ -128,4 +129,5 @@ exports.AddDoctor = (request, response, next) => {
             next(error);    
         }
     
+      console.log("kkkkkk");
     }

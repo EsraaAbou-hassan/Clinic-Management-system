@@ -3,17 +3,18 @@ var cors = require('cors')
 const mongoose=require("mongoose");
 const server=express();
 const bodyParser=require("body-parser");
-const medicineRouter = require("./Routes/medicineRoute");
 
+const medicineRouter = require("./Routes/medicineRoute");
 const prescriptionRoute=require("./Routes/prescriptionRouter");
 const invoiceRoute=require("./Routes/invoiceRouter");
 const appointmentRouter=require("./Routes/AppointmentRouter")
 const doctorRoute=require("./Routes/doctorRouter");
 const authRouter=require('./Routes/authRouter');
 const patientRouter=require('./Routes/patientRouter');
-const doctorAppointmentRouter=require('./Routes/doctorAppointmentRouter');
+var cors = require('cors');
 
 
+server.use(cors())
 // var fs = require('fs');
 // var path = require('path');
 // require('dotenv/config');
@@ -58,6 +59,7 @@ server.use("/Prescription",prescriptionRoute);
 server.use("/Invoice",invoiceRoute);
 server.use("/Doctor",doctorRoute);
 server.use("/doctorAppointment",doctorAppointmentRouter);
+server.use(authRouter);
 server.use("/patient",patientRouter);
 
 //---------------------------------------------AppointmentRouter--------------------------------

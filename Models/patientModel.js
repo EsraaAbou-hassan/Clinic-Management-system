@@ -7,7 +7,8 @@ const patientModel=new Schema({
     lastName:String,
     gender:{type:String,enum:["Female","Male"]},
     phone:String,
-    address:{type:Object}
+    address:{type:Object},
+    //image:String
 })
 
-module.exports=model("patient",patientModel);
+module.exports=model("patients",patientModel);

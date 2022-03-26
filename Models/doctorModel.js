@@ -46,6 +46,7 @@ const schema = new mongoose.Schema({
       },address:{
          type:Object,
          required:true,   
+           
             street:{
                   type:String,
                    required:true 
