@@ -12,6 +12,8 @@ const doctorRoute=require("./Routes/doctorRouter");
 const authRouter=require('./Routes/authRouter');
 const patientRouter=require('./Routes/patientRouter');
 var cors = require('cors');
+const doctorAppointmentRouter=require("./Routes/doctorAppointmentRouter")
+
 
 
 server.use(cors())
