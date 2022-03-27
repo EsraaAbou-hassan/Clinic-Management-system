@@ -8,31 +8,22 @@ pre_id: {
  },
  patient_id: {
     type:Number,
-    ref:"patients",
+    ref:"patient",
     required:true
  },
 doctor_id: {
    type:Number,
-    ref:"doctors",
+    ref:"Doctor",
     required:true   
  },
- drug:{
-   type: "object",
-   
-       properties: {
+
 drug_id:{
-   type:Number,  
+   type:[Number],  
+   ref:"Medicine",
     required:true
 
- },
-quantity: {
-   type:Number,
-      required:true
-     
  }
-           
-           }
-     }
+
     
 });
 

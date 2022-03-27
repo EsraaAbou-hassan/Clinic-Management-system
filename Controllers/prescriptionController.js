@@ -2,7 +2,7 @@ const {validationResult}=require("express-validator");
 const Prescription=require("./../Models/prescriptionSchema")
 
 exports.getAllprescriptions=(request,response)=>{
-    Prescription.find({}).then(
+    Prescription.find({}).populate('patient_id',' firstName  lastName').populate('doctor_id','firstName lastName').populate('drug_id medicineName'). then(
         data=>{
             response.status(200).json(data)
            
@@ -30,14 +30,13 @@ exports.createPrescription = (request, response, next) => {
         error.message = errors.array().reduce((current, object) => current + object.msg + " ", "")
         throw error;
     }
+  
     let object = new Prescription({
         pre_id: request.body.pre_id,
         patient_id: request.body.patient_id,
         doctor_id: request.body.doctor_id,
-        drug:request.body.drug,
         drug_id:request.body.drug_id,
-        quantity:request.body.quantity
-        
+    
     })
     object.save()
         .then(data => {
@@ -69,7 +68,7 @@ exports.updatePrescription = (request, response, next) => {
         doctor_id: request.body.doctor_id,
         drug:request.body.drug,
         drug_id:request.body.drug_id,
-        quantity:request.body.quantity
+      
         }
     })
    

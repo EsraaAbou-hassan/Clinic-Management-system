@@ -12,7 +12,7 @@ const schema = new mongoose.Schema({
      },
     patient_id: {
        type:Number,
-        ref:"patients",
+        ref:"patient",
         required:true   
      },
      doctor_id: {

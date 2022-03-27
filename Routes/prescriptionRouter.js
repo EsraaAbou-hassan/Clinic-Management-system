@@ -9,8 +9,8 @@ router.post("",[
     body("pre_id").isInt().withMessage("preID should be Integer"),
     body("patient_id").isInt().withMessage("Patient ID should be Integer"),
     body("doctor_id").isInt().withMessage("doctor ID should be Integer"),
-    body("drug.drug_id").isInt().withMessage("drug ID should be Integer"),
-    body("drug.quantity").isInt().withMessage("quantity ID should be Integer")
+   // body("drug_id").isArray().withMessage("drug ID should be Integer"),
+   
 ],controller.createPrescription);
 router.delete("/:id",controller.deletePrescription);
 router.put("/:id",controller.updatePrescription);

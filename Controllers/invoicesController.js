@@ -3,7 +3,7 @@ const Invoices=require("./../Models/invoiceSchema");
 
 
 
-exports.getAllinvoices=(request,response)=>{
+exports.getAllinvoices=(request,response,next)=>{
    
     Invoices.find({}).populate('doctor_id','firstName lastName').populate('patient_id','firstName lastName').then(
         data=>{
