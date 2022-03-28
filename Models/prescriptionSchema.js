@@ -4,11 +4,12 @@ const mongoose=require("mongoose");
 const schema=new mongoose.Schema({
 pre_id: {
     type:Number,
+    unique:true,
     required:true
  },
  patient_id: {
     type:Number,
-    ref:"patient",
+    ref:"patients",
     required:true
  },
 doctor_id: {
@@ -17,8 +18,8 @@ doctor_id: {
     required:true   
  },
 
-drug_id:{
-   type:[Number],  
+ Med_id:{
+   type:Number,  
    ref:"Medicine",
     required:true
 

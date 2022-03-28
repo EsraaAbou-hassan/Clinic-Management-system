@@ -4,13 +4,12 @@ const router=express.Router();
 
 const controller=require("./../Controllers/prescriptionController")
 router.get("",controller.getAllprescriptions);
-router.get("/:id?",controller.getPrescription);
+router.get("/:id",controller.getPrescription);
 router.post("",[
     body("pre_id").isInt().withMessage("preID should be Integer"),
     body("patient_id").isInt().withMessage("Patient ID should be Integer"),
     body("doctor_id").isInt().withMessage("doctor ID should be Integer"),
-   // body("drug_id").isArray().withMessage("drug ID should be Integer"),
-   
+    body("Med_id").isInt().withMessage("Med ID should be Integer") 
 ],controller.createPrescription);
 router.delete("/:id",controller.deletePrescription);
 router.put("/:id",controller.updatePrescription);

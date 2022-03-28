@@ -12,7 +12,7 @@ router.get("/list", controller.getMedicine)
 
 //-------- Start Post------------
 router.post("/add",[
-    body("Med_id").isInt().withMessage("id should be Number"),
+    body("_id").isInt().withMessage("id should be Number"),
     body("medicineName").isAlpha().withMessage("Medicine name should be string"),
     body("category").isAlpha().withMessage("Medicine category should be string"),
     body("companyName").isAlpha().withMessage("Company name should be string"),
@@ -26,8 +26,8 @@ router.put("/update", controller.updateMedicine)
 //-------- End Update-------------
 
 //-------- Start Delete-------------
-router.delete("/delete/:Med_id",[
-    param("Med_id").isInt().withMessage("Id should be Integer")
+router.delete("/delete/:_id",[
+    param("_id").isInt().withMessage("Id should be Integer")
 ], controller.deleteMedicine)
 //-------- End Delete-------------
 

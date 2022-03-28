@@ -1,7 +1,7 @@
 const express =require("express");
 var cors = require('cors')
 const mongoose=require("mongoose");
-const cors = require('cors');
+
 const server=express();
 const bodyParser=require("body-parser");
 
@@ -12,7 +12,7 @@ const appointmentRouter=require("./Routes/AppointmentRouter")
 const doctorRoute=require("./Routes/doctorRouter");
 const authRouter=require('./Routes/authRouter');
 const patientRouter=require('./Routes/patientRouter');
-var cors = require('cors');
+
 const doctorAppointmentRouter=require("./Routes/doctorAppointmentRouter")
 
 
@@ -36,14 +36,14 @@ mongoose.connect("mongodb://localhost:27017/CMS")
 
         });
 
- server.use(cors())
+// server.use(cors())
 //************************* MiddleWares */
 //first-MW
 server.use((request,response,next)=>{
     console.log(request.url,request.method);
     next();
 });
- server.use(cors());
+// server.use(cors());
 //----------------------------------------------------routing
 
 server.use("/home",(request,response)=>{

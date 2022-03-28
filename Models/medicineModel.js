@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 //------ Create Validation Schema ---------
 const medicineModel = mongoose.Schema({
-    Med_id: {type: Number, require: true, unique:true},
+    _id: {type: Number, require: true, unique:true},
     medicineName: {type: 'string', require: true, unique:true},
     category: {type: 'string', require: true},
     companyName:{type: 'string', require: true},
