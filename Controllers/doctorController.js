@@ -7,13 +7,13 @@ exports.getAllDoctors=(request,response)=>{
             response.status(200).json(data)
            
         }).catch(error=>{
-             next(error);
+             
          
     })
 }
 exports.getDoctorById=(request,response,next)=>{
     doctor.findOne({_id:request.params.id}).then(data=>{
-        if(data==null) next(new Error("Invoice is not found"))
+        if(data==null) next(new Error("Doctor is not found"))
         response.status(200).json(data)
     }) 
     .catch(error=>{

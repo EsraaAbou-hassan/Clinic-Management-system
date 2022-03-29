@@ -10,6 +10,7 @@ const appointmentRouter=require("./Routes/AppointmentRouter")
 const doctorRoute=require("./Routes/doctorRouter");
 const authRouter=require('./Routes/authRouter');
 const patientRouter=require('./Routes/patientRouter');
+const clientService=require('./Routes/client_serviceRoute');
 var cors = require('cors');
 
 
@@ -57,6 +58,7 @@ server.use("/medicine",medicineRouter);
 server.use("/Prescription",prescriptionRoute);
 server.use("/Invoice",invoiceRoute);
 server.use("/Doctor",doctorRoute);
+server.use("/ClientService",clientService);
 server.use(authRouter);
 server.use("/patient",patientRouter);
 
