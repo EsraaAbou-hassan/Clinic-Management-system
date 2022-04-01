@@ -11,6 +11,7 @@ const doctorRoute=require("./Routes/doctorRouter");
 const authRouter=require('./Routes/authRouter');
 const patientRouter=require('./Routes/patientRouter');
 const clientService=require('./Routes/client_serviceRoute');
+const employeeRouter=require("./Routes/employeeRouter")
 var cors = require('cors');
 
 
@@ -61,6 +62,7 @@ server.use("/Doctor",doctorRoute);
 server.use("/ClientService",clientService);
 server.use(authRouter);
 server.use("/patient",patientRouter);
+server.use("/Employee",employeeRouter);
 
 //---------------------------------------------AppointmentRouter--------------------------------
 server.use("/Appointment",appointmentRouter)
