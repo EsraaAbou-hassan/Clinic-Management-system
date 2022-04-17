@@ -13,6 +13,23 @@ exports.getAllPatients=(req,res,next)=>{
                next(error);
            })
 }
+
+//======================================================
+exports.getPatientId=(req,res,next)=>{
+    Patient.find({$and:[{"firstName":req.body.firstName},{"lastName":req.body.lastName}]})
+           .then(result=>{
+               res.status(201).json(result)
+           })
+           .catch(error=>{
+               error.status=500;
+               next(error);
+           })
+}
+//========================================================
+
+// //========================================================
+// exports.updatePatient=(req,res,next)=>{
+//     Patient.updateOne({_id:req.body.id},{
 //get one patient=========================================
 exports.getPatient = (req, res, next) => {
     Patient.findOne({_id:req.params.id})
@@ -62,6 +79,7 @@ exports.AddPatient = (req, res, next) => {
 }
 
 //Update Patient======================================================
+
 exports.updatePatient=(req,res,next)=>{
     Patient.findByIdAndUpdate({_id:req.params.id},{
         $set:{
@@ -73,23 +91,12 @@ exports.updatePatient=(req,res,next)=>{
         }
     })
     .then(result=>{
-        if(!result)
-        throw new Error("Patient Is not Found!")
         res.status(201).json({message:"Updated"})
     })
-    .catch(error=>{error.status=500;next(error);
+    .catch(error=>{
+        error.status=500;
+        next(error);
     })
-    // User.findByIdAndUpdate({_id:req.body.id},{
-    //     $set:{
-    //         email:req.body.email,
-    //         password:req.body.password,
-    //     }
-    // })
-    // .then(result=>{
-    //     console.log("User Updated")
-    // })
-    // .catch(error=>{error.status=500;next(error);
-    // })
 
 }
 //delete Patient=====================================================
@@ -120,5 +127,25 @@ exports.deletePatient=async(req,res,next)=>{
         .catch(error=>{
             error.status=500;
             next(error);
+        })    
         }) */   
 }
+
+
+//Add Patient=============================================
+exports.AddPatient = (req, res, next) => {
+    //console.log(req.file)
+    let patientObj = new Patient({
+        _id: req.body._id,
+        firstName:req.body.firstName,
+        lastName:req.body.lastName,
+        gender:req.body.gender,
+        phone:req.body.phone,
+        address:req.body.address
+        //image: req.file.filename
+    })
+    patientObj.save()
+        .then(data => {
+            res.status(201).json({ message: "Patient added Successfully", data })
+        })
+        .catch(error =>{error.status=500; next(error)})}

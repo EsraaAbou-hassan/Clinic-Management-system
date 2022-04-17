@@ -128,5 +128,6 @@ exports.AddDoctor = (request, response, next) => {
         } catch (error) {
             next(error);    
         }
+    
       console.log("kkkkkk");
     }

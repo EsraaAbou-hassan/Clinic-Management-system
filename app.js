@@ -1,9 +1,11 @@
 const express =require("express");
+var cors = require('cors')
 const mongoose=require("mongoose");
+
 const server=express();
 const bodyParser=require("body-parser");
-const medicineRouter = require("./Routes/medicineRoute");
 
+const medicineRouter = require("./Routes/medicineRoute");
 const prescriptionRoute=require("./Routes/prescriptionRouter");
 const invoiceRoute=require("./Routes/invoiceRouter");
 const appointmentRouter=require("./Routes/AppointmentRouter")
@@ -13,6 +15,9 @@ const patientRouter=require('./Routes/patientRouter');
 const clientService=require('./Routes/client_serviceRoute');
 const employeeRouter=require("./Routes/employeeRouter")
 var cors = require('cors');
+
+const doctorAppointmentRouter=require("./Routes/doctorAppointmentRouter")
+
 
 
 server.use(cors())
@@ -34,15 +39,14 @@ mongoose.connect("mongodb://localhost:27017/CMS")
 
         });
 
-
-
+// server.use(cors())
 //************************* MiddleWares */
 //first-MW
 server.use((request,response,next)=>{
     console.log(request.url,request.method);
     next();
 });
-
+// server.use(cors());
 //----------------------------------------------------routing
 
 server.use("/home",(request,response)=>{
@@ -52,6 +56,7 @@ server.use("/home",(request,response)=>{
 // middle ware to handle reqestBody
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended:false}));
+server.use(authRouter);
 
 // we will put our Routing here 
 server.use("/medicine",medicineRouter);
@@ -60,6 +65,7 @@ server.use("/Prescription",prescriptionRoute);
 server.use("/Invoice",invoiceRoute);
 server.use("/Doctor",doctorRoute);
 server.use("/ClientService",clientService);
+server.use("/doctorAppointment",doctorAppointmentRouter);
 server.use(authRouter);
 server.use("/patient",patientRouter);
 server.use("/Employee",employeeRouter);

@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 const {Schema,model}=mongoose;
 
-const patientModel=new Schema({
+const patientModel=new  Schema({
     _id:Number,
     firstName:String,
     lastName:String,

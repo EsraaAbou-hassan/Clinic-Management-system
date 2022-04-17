@@ -34,7 +34,7 @@ exports.createMedicine = (request, response, next) => {
         next(error);
     } else {
         let medicineObject = new Medicine({
-            Med_id: request.body.Med_id,
+            _id: request.body._id,
             medicineName: request.body.medicineName,
             category: request.body.category,
             companyName: request.body.companyName,
@@ -57,7 +57,7 @@ exports.createMedicine = (request, response, next) => {
 
 
 exports.updateMedicine = (request, response,next) => {
-    Medicine.updateOne({ Med_id: request.body.Med_id },
+    Medicine.updateOne({ _id: request.body._id },
         {
             $set: {
                 medicineName: request.body.medicineName,
@@ -98,7 +98,7 @@ exports.updateMedicine = (request, response,next) => {
 
 exports.deleteMedicine= async (request, response, next) => {
     try {
-        let data = await Medicine.deleteOne({Med_id: request.params.id})
+        let data = await Medicine.deleteOne({_id: request.params.id})
         if (data == null) throw new Error("Medicine Is not Found!")
         response.status(200).json({ message: "deleted" })
     } catch (error) {

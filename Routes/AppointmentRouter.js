@@ -9,26 +9,23 @@ router.get("",controller.getALlAppointment);
 // add new Appointment
 router.post("",[
     body("id").isInt().withMessage("id must be integer"),
-    body("PN").isAlpha().withMessage("Patient Name must by string"),
-    body("DN").isAlpha().withMessage("doctor Name must by string"),
-    body("PE").isEmail().withMessage("Invalid Email "),
-    body("PM").isInt().withMessage("Invalid Mobile phone"),
-    body("DN").isAlpha().withMessage("doctor Name must by string"),
+    body("PatientName").isAlpha().withMessage("Patient Name must by string"),
+    body("DoctorName").isAlpha().withMessage("doctor Name must by string"),
+    body("PatientEmail").isEmail().withMessage("Invalid Email "),
+    body("PatientMobile").isInt().withMessage("Invalid Mobile phone"),
 ],controller.createAppointment);
 
 //update Appointment
 
 router.put("",[
-    body("id").isInt().withMessage("id must be integer"),
-    body("PN").isAlpha().withMessage("Patient Name must by string"),
-    body("DN").isAlpha().withMessage("doctor Name must by string"),
-    body("PE").isEmail().withMessage("Invalid Email "),
-    body("PM").isInt().withMessage("Invalid Mobile phone"),
-    body("DN").isAlpha().withMessage("doctor Name must by string"),
+    body("PatientName").isAlpha().withMessage("Patient Name must by string"),
+    body("DoctorName").isAlpha().withMessage("doctor Name must by string"),
+    body("PatientEmail").isEmail().withMessage("Invalid Email "),
+    body("PatientMobile").isInt().withMessage("Invalid Mobile phone"),
 ],controller.updateAppointment);
 
 
 // delete appointment
-router.delete("",controller.deleteAppointment);
+router.delete("/:Id",controller.deleteAppointment);
 
 module.exports=router;
