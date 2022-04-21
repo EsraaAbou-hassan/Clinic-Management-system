@@ -31,6 +31,7 @@ mongoose.connect("mongodb://localhost:27017/CMS")
                 
         })
         .catch(error=>{
+            console.log(error);
                 console.log("DB Conection Problem");
 
         });
