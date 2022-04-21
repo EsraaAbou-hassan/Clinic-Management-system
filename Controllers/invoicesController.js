@@ -1,8 +1,11 @@
 const {validationResult}=require("express-validator");
 const Invoices=require("./../Models/invoiceSchema");
 
-exports.getAllinvoices=(request,response)=>{
-    Invoices.find({}).then(
+
+
+exports.getAllinvoices=(request,response,next)=>{
+   
+    Invoices.find({}).populate('doctor_id','firstName lastName').populate('patient_id','firstName lastName').then(
         data=>{
             response.status(200).json(data)
            
@@ -12,9 +15,31 @@ exports.getAllinvoices=(request,response)=>{
     })
 }
 
+exports.getDoctor=(request,response)=>{
+    doctors.find({_id:request.params.id}).then(
+        data=>{
+            response.status(200).json(data)
+        }
+    ).catch(error=>{
+        next(error);
+    })
+    
+    }
+
+
+exports.getDoctor=(request,response)=>{
+doctors.find().then(
+    data=>{
+        response.status(200).json(data)
+    }
+).catch(error=>{
+    next(error);
+})
+
+}
 
 exports.getInvoice=(request,response,next)=>{
-    Invoices.findOne({bill_id:request.params.id}).then(data=>{
+    Invoices.findOne({bill_id:request.params.id}).populate('doctor_id','firstName'). then(data=>{
         if(data==null) next(new Error("Invoice is not found"))
         response.status(200).json(data)
     }) 

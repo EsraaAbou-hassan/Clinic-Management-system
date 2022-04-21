@@ -13,6 +13,20 @@ exports.getAllPatients=(req,res,next)=>{
                next(error);
            })
 }
+
+//======================================================
+exports.getPatientId=(req,res,next)=>{
+    Patient.find({$and:[{"firstName":req.body.firstName},{"lastName":req.body.lastName}]})
+           .then(result=>{
+               res.status(201).json(result)
+           })
+           .catch(error=>{
+               error.status=500;
+               next(error);
+           })
+}
+//========================================================
+
 // //========================================================
 // exports.updatePatient=(req,res,next)=>{
 //     Patient.updateOne({_id:req.body.id},{
@@ -65,6 +79,7 @@ exports.AddPatient = (req, res, next) => {
 }
 
 //Update Patient======================================================
+
 exports.updatePatient=(req,res,next)=>{
     Patient.findByIdAndUpdate({_id:req.params.id},{
         $set:{
@@ -115,3 +130,22 @@ exports.deletePatient=async(req,res,next)=>{
         })    
         }) */   
 }
+
+
+//Add Patient=============================================
+exports.AddPatient = (req, res, next) => {
+    //console.log(req.file)
+    let patientObj = new Patient({
+        _id: req.body._id,
+        firstName:req.body.firstName,
+        lastName:req.body.lastName,
+        gender:req.body.gender,
+        phone:req.body.phone,
+        address:req.body.address
+        //image: req.file.filename
+    })
+    patientObj.save()
+        .then(data => {
+            res.status(201).json({ message: "Patient added Successfully", data })
+        })
+        .catch(error =>{error.status=500; next(error)})}

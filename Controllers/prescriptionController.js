@@ -1,8 +1,8 @@
 const {validationResult}=require("express-validator");
 const Prescription=require("./../Models/prescriptionSchema")
 
-exports.getAllprescriptions=(request,response)=>{
-    Prescription.find({}).then(
+exports.getAllprescriptions=(request,response,next)=>{
+    Prescription.find({}).populate('patient_id','firstName lastName').populate('doctor_id','firstName lastName').populate('Med_id', 'Med_id medicineName'). then(
         data=>{
             response.status(200).json(data)
            
@@ -13,7 +13,7 @@ exports.getAllprescriptions=(request,response)=>{
 }
 
 exports.getPrescription=(request,response,next)=>{
-Prescription.findOne({pre_id:request.params.id}).then(data=>{
+Prescription.findOne({pre_id:request.params.id}).populate('patient_id','firstName lastName').populate('doctor_id','firstName lastName').populate('Med_id', 'Med_id medicineName').then(data=>{
     if(data==null) next(new Error("Prescription is not found"))
     response.status(200).json(data)
 }) 
@@ -30,21 +30,23 @@ exports.createPrescription = (request, response, next) => {
         error.message = errors.array().reduce((current, object) => current + object.msg + " ", "")
         throw error;
     }
+  
     let object = new Prescription({
         pre_id: request.body.pre_id,
         patient_id: request.body.patient_id,
         doctor_id: request.body.doctor_id,
-        drug:request.body.drug,
-        drug_id:request.body.drug_id,
-        quantity:request.body.quantity
+        Med_id:request.body.Med_id
         
     })
     object.save()
         .then(data => {
             response.status(201).json({ message: "added", data })
-       
+           
         })
-        .catch(error => {next(error);          
+        .catch(error => {
+            next(error);    
+            console.log(error)   
+             
         })
 
 
@@ -66,10 +68,9 @@ exports.updatePrescription = (request, response, next) => {
     Prescription.updateOne({pre_id:request.params.id},{
         $set:{
         patient_id: request.body.patient_id,
-        doctor_id: request.body.doctor_id,
-        drug:request.body.drug,
-        drug_id:request.body.drug_id,
-        quantity:request.body.quantity
+        doctor_id: request.body.doctor_id,  
+        Med_id:request.body.Med_id
+      
         }
     })
    

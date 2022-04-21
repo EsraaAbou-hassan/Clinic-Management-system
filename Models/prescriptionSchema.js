@@ -4,6 +4,7 @@ const mongoose=require("mongoose");
 const schema=new mongoose.Schema({
 pre_id: {
     type:Number,
+    unique:true,
     required:true
  },
  patient_id: {
@@ -13,26 +14,17 @@ pre_id: {
  },
 doctor_id: {
    type:Number,
-    ref:"doctors",
+    ref:"Doctor",
     required:true   
  },
- drug:{
-   type: "object",
-   
-       properties: {
-drug_id:{
+
+ Med_id:{
    type:Number,  
+   ref:"Medicine",
     required:true
 
- },
-quantity: {
-   type:Number,
-      required:true
-     
  }
-           
-           }
-     }
+
     
 });
 

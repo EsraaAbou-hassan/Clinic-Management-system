@@ -37,7 +37,7 @@ const schema = new mongoose.Schema({
       },
       Department:{
         type:String,
-         required:true   
+     //    required:true   
       },
       join_Date:{
       //   type:String,
@@ -64,12 +64,12 @@ const schema = new mongoose.Schema({
       },
       password: {
         type:String,
-         required:true   
+    //     required:true   
       },
       
       img:{
          type:String,
-         required:true  
+      //   required:true  
       //    data: Buffer,
       //   contentType: String 
       },
